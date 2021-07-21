@@ -1,17 +1,22 @@
-# react-style-guide
+# React Style Guide
 
-Обязательные файлы для каждого проекта:
+## Overview
+We are using this style guide in Roonyx company for React projects.
 
-- style-guide.md - описание структуры проекта и правила оформления кода и компонентов
-- .eslintrc.json
-- .prettierrc
+## Pre-requisites
 
-Необходимые пакеты npm для eslint и prettier:
+All projects must include following files:
 
-- @typescript-eslint/eslint-plugin
-- @typescript-eslint/parser
-- eslint
-- eslint-config-prettier
-- eslint-plugin-prettier
-- eslint-plugin-react
-- prettier
+- [`style-guide.md`](style-guide.md) - contains project structure description, code style rules and components structure guidelines
+- [`.eslintrc.json`](.eslintrc.json) - contains basic set of rules for `eslint`
+- [`.prettierrc`](.prettierrc) - prettier config 
+
+In order to `eslint` and `prettier` work properly it's necessary to install following npm packages:
+
+- `@typescript-eslint/eslint-plugin`
+- `@typescript-eslint/parser`
+- `eslint`
+- `eslint-config-prettier`
+- `eslint-plugin-prettier`
+- `eslint-plugin-react`
+- `prettier`
