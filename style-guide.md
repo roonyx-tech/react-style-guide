@@ -1,68 +1,59 @@
-## Основные правила
+## Core rules
 
-https://github.com/airbnb/javascript
+We are following https://github.com/airbnb/javascript style guide in general.
 
-1. Использовать более понятные переменные в однострочных функциях (map, filter, reduce, ...)
-2. Использовать alias в путях импорта
-3. Использовать именованые экспорты/импорты
-4. Избегать any / unknown
-5. Типизировать приходящие с сервера данные
-6. Использовать комментарии в коде для доработок и фиксов на будущее
-7. Обязательно использование eslint и prettier
 
-_(Контент дополняется)_
+1. Use meaningful names for one-line functions, like `map`,`filter, `reduce`.
+1. Use aliases for import path.
+1. Use named imports/exports.
+1. Try to avoid `any` / `unknown`. 
+1. Define types for data retrieved from server.
+1. Use `@todo` and `@hack` comments for future improvements and fixes.
+1. Always use `eslint` and `prettier`.
 
-## Правила оформления компонентов
+🚧 _Content is under development._
 
-1. Делать компоненты небольшими и функциональными
-2. Для нескольких классов использовать библиотеку classnames https://www.npmjs.com/package/classnames
-3. Оформление функционального компонента (IComponent - интерфейс, описывающий пропсы):
+---
+
+## Component guidelines
+
+1. Keep components small and functional.
+1. Use [classname](https://www.npmjs.com/package/classnames) package for defining multiple css classes.
+
+1. Always use named export, avoid `export default`.
+1. Use `UpperCamelCase` for files containing components.
+1. Use `.tsx` extension for components
+
+### Functional component template
 
 ```jsx
+// Defines props types
+export interface IComponent {
+}
+
 export const Component: React.FC<IComponent> = (props: IComponent): JSX.Element => { ... };
 ```
+
+
 ```jsx
 export const Component: React.FC<IComponent> = React.memo((props: IComponent): JSX.Element => { ... });
 ```
-4. Использовать только именованный экспорт, do not use `export default`
-5. Название компонентов всегда с большой буквы, расширение только `.tsx`
 
-## Структура папки src
+### Component folder structure 
 
-Описаны только основные файлы и структура папки, если в приложении используется роутинг
+`/SomeComponent/` folder content:
 
-- index.tsx
-- index.css / index.scss
-- App.tsx
-- App.module.scss
-- \_variables.scss - для хранения глобальных переменных
-- \_general.scss - для хранения глобальных классов всего приложения
-- types.ts - файл для хранения глобальных типов и интерфейсов
-- const.ts - файл для хранения глобальных констант
-- functions.ts - файл для хранения функций, используемых многими компонентами. Функции должны быть прокомментированны Если функций много, может быть преобразован в папку
-- pages - компоненты, отвечающие за страницы приложения
-- shared - компоненты, используемые на более чес одной странице
-- redux - все файлы редакс
-- services - сервисы
-- assets/svg - используемые в компонентах svg файлы
+- `index.ts` - should re-export component and used for imports, e.g. `import { SomeComponent } from '~/shared/SomeComponent'`
+- `types.ts` - should contain types and interfaces used for component and it's child components (which should be placed in the same folder).
+- `functions.ts` - same thing, but for functions.
+- `styles.module.scss` - component styles.
+- `SomeComponent.tsx` - component itself.
+- `SomeComponent.test.ts` - file for component specs _(if necessary)_
+- `/AnotherComponent` - folder for child component, used only as part of `SomeComponent`
 
+#### Component example
 
-## Структура папки с компонентом
-
-/SomeComponent/
-
-- index.ts - файл для импорта. `import { SomeComponent } from '~/shared/SomeComponent'`
-- types.ts - файл для хранения типов и интерфейсов, используемых только компонентом и его дочерними компонентами в этой папке
-- functions.ts - файл для хранения функций, используемых только компонентом и его дочерними компонентами в этой папке
-- styles.module.scss - файл стилей
-- SomeComponent.tsx - компонент
-- SomeComponent.test.ts - файл тестирования компонента _(если предусмотрено тестирование)_
-- /AnotherComponent - компонент, используемый только компонентом SomeComponent
-
-
-### Пример простого компонента
-
-index.ts
+`index.ts` file:
 
 ```jsx
 export * from './SomeComponent';
@@ -70,7 +61,7 @@ export { User } from './types';
 
 ```
 
-types.ts
+`types.ts` file:
 
 ```jsx
 export type ButtonType = 'primary' | 'outlined' | 'error';
@@ -82,7 +73,7 @@ export type User = {
 
 ```
 
-SomeComponent.tsx
+`SomeComponent.tsx` file:
 
 ```jsx
 import React, { useState } from 'react';
@@ -125,6 +116,27 @@ export const SomeComponent: React.FC<ISomeComponentProps> = (props: ISomeCompone
 };
 ```
 
-## Структура redux
 
-_(Дополняется)_
+## Project structure
+
+Describes only core files and folders assuming that project uses routing.
+
+`/src/` folder content:
+- `index.tsx`
+- `index.css / index.scss`
+- `App.tsx`
+- `App.module.scss`
+- `\_variables.scss` - use for global variables
+- `\_general.scss` - use for global classes
+- `types.ts` - use for global types and interfaces
+- `const.ts` - use for global constants
+- `functions.ts` - use for reusable functions. Always comment all functions. In case of unexpected growth we prefer to create folder instead and separate functions to multiple files.
+- `pages` - use for components responsible for app pages.
+- `shared` - use for shared components.
+- `redux` - use for redux related files.
+- `services` - use for services.
+- `assets/svg` - use for `svg` files.
+
+## Redux structure
+
+🚧 _Content is under development._
